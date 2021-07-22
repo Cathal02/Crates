@@ -1,0 +1,7 @@
+name: Crates
+version: ${project.version}
+main: org.cathal02.Crates
+api-version: 1.15.2
+commands:
+  crate:
+    description: "Base command for crates plugin"

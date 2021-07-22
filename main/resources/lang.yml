@@ -1,0 +1,22 @@
+prefix: '&9[Crates]'
+mustBeAPlayer: '%prefix% &c You must be a player to perform this command.'
+incorrectCrateCommandFormat: '%prefix% &cIncorrect Syntax. Use: /crate <create, delete, edit> <name>'
+incorrectCrateGiveCommandFormat: '%prefix% &cIncorrect Syntax. Use: /crate give <player> <crate> <amount>'
+crateDoesNotExist: '%prefix% &cThis crate does not exist.'
+noItemInHand: "%prefix%&c You must have an item in your hand."
+crateCreated: "%prefix%&a Crate created successfully."
+crateCouldNotBeCreated: "%prefix% &cCrate could not be created. Make sure the crate name is not a duplicate."
+actionCancelled: "%prefix% &cAction cancelled."
+notANumber: "%prefix% &cThis is not a valid number."
+crateReceived: "%prefix% &aYou have received a crate!"
+noPermission: "%prefix% &cYou do not have permission to perform this command."
+dailyLimitReached: "%prefix% &cYou have reached the daily limit of crate opens!"
+hasCoolDown: "%prefix% &cYou have a cooldown of &6%cooldown% seconds"
+playerIsOffline: "%prefix% &cThis player is offline or does not exist"
+rewardMessage: "%prefix% &aYou received %item_name% &awith odds of &6%item_chance%"
+  crateHasNoItems: "%prefix% &cThis crate has no items added to it yet!"
+helpMessage:
+  - ''
+  - '&6/crate <create, delete, edit> <name>'
+  - '&6/crate give <player> <crate> <amount>'
+  - ''

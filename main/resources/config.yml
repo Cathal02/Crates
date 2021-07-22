@@ -1,0 +1,11 @@
+maxRewardsPerCrate: 6
+
+crateCooldown: 30 # In seconds
+maxDailyCrateOpens: 5
+
+#sql
+sqlHost: localhost
+port: 3306
+database: local
+username:
+password:
