@@ -30,6 +30,7 @@ public class CrateOpener implements Listener {
     }
 
     public void openCrate(final Player player, final Crate crate) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         new ConfirmationGUI(player, plugin).onConfirm(p -> {
             if (crate.getCrateRewards().size() < 1) {
                 player.sendMessage(Messages.getString("crateHasNoItems", true));
@@ -43,7 +44,6 @@ public class CrateOpener implements Listener {
     private void openGui(final Player player, final Crate crate) {
         final Inventory inventory = Bukkit.createInventory(new CrateOpenerHolder(), 45,
                 "Open Crate: " + crate.getName());
-        player.openInventory(inventory);
 
         tasks.put(player.getUniqueId(), new BukkitRunnable() {
 
@@ -138,7 +138,6 @@ public class CrateOpener implements Listener {
     @EventHandler
     public void onInventoryClose(final InventoryCloseEvent e) {
         if (e.getInventory().getHolder() instanceof CrateOpenerHolder) {
-
             if (tasks.containsKey(e.getPlayer().getUniqueId())) {
                 Bukkit.getScheduler().cancelTask(tasks.get(e.getPlayer().getUniqueId()));
                 tasks.remove(e.getPlayer().getUniqueId());
