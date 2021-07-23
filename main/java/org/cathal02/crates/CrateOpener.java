@@ -65,7 +65,6 @@ public class CrateOpener implements Listener {
                     }
                     calcComplete = true;
                     player.openInventory(inventory);
-
                 }
 
                 // Crate animation

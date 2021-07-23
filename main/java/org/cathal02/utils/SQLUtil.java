@@ -88,10 +88,7 @@ public class SQLUtil {
 
     public PlayerDataResponse getPlayerCrateCooldown(final UUID player) {
         try {
-            if (!checkConnection()) {
-                getNewConnection();
-            }
-            if (connection == null) return new PlayerDataResponse();
+            if (!checkConnection() || connection == null) return new PlayerDataResponse();
 
             if (!playerExists(player)) {
                 createPlayer(player);
@@ -131,9 +128,7 @@ public class SQLUtil {
 
     public void createPlayer(final UUID player) {
         try {
-            if (!checkConnection()) {
-                getNewConnection();
-            }
+            if (!checkConnection()) return;
 
             if (connection != null) {
                 final PreparedStatement ps = connection.prepareStatement("INSERT INTO playerData (playerUUID," +
@@ -153,34 +148,27 @@ public class SQLUtil {
 
     private boolean playerExists(final UUID player) {
         try {
-            if (!checkConnection()) {
-                getNewConnection();
-            }
+            if (!checkConnection()) return false;
 
-            if (connection != null) {
-                final PreparedStatement ps = connection.prepareStatement("SELECT * FROM playerData WHERE playerUUID=?");
-                ps.setString(1, player.toString());
-                final ResultSet set = ps.executeQuery();
-                final boolean found = set.next();
-                set.close();
-                return found;
-            }
+            final PreparedStatement ps = connection.prepareStatement("SELECT * FROM playerData WHERE playerUUID=?");
+            ps.setString(1, player.toString());
+
+            final ResultSet set = ps.executeQuery();
+            final boolean found = set.next();
+
+            set.close();
+            return found;
+
         } catch (final SQLException e) {
             System.out.println("[Crates] Failed to check if player exists");
 
             return false;
         }
-
-        return false;
     }
 
     public void update(final UUID player, final LocalDateTime coolDownTime, final List<LocalDateTime> crateOpens) {
         try {
-            if (!checkConnection()) {
-                getNewConnection();
-            }
-
-            if (connection == null) return;
+            if (!checkConnection()) return;
 
             if (!playerExists(player)) {
                 createPlayer(player);
